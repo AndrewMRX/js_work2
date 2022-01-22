@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оператор ? и его использование</title>
+</head>
+
+<body>
+  <script>
+    let a = prompt('Введите значение a: ', '');
+    let b = prompt('Введите значение b: ', '');
+
+    let aIsNum = true;
+    let bIsNum = true;
+
+    if(a[0] != '\u002D') {
+
+      if (a.length > 2) { 
+        for (let i = 2; i < a.length; i++) {
+          if  ( (a[i] < '\u0030' || a[i] > '\u0039') )  { aIsNum = false; }
+        }
+       }
+      if (a[0] < '\u0030' || a[0] > '\u0039' ) { aIsNum = false; }
+      if ( (a[1] < '\u0030' || a[1] > '\u0039') && a[1] != '\u002e') { aIsNum = false; }
+     
+    }
+
+    if (b[0] != '\u002D') {
+
+        if (b.length > 2) {
+        for (let i = 2; i < b.length; i++) {
+          if ((b[i] < '\u0030' || b[i] > '\u0039')) { bIsNum = false; }
+        }
+      }
+      if (b[0] < '\u0030' || b[0] > '\u0039') { bIsNum = false; }
+      if ((b[1] < '\u0030' || b[1] > '\u0039') && b[1] != '\u002e') { bIsNum = false; }
+
+      }
+
+
+    if (a[0] == '\u002D') {
+
+        if (a.length > 3) {
+          for (let i = 3; i < a.length; i++) {
+            if ((a[i] < '\u0030' || a[i] > '\u0039')) { aIsNum = false; }
+          }
+        } else if (a.length == 1)  { aIsNum = false; }
+        if (a[1] < '\u0030' || a[1] > '\u0039') { aIsNum = false; }
+        if ((a[2] < '\u0030' || a[2] > '\u0039') && a[2] != '\u002e') { aIsNum = false; }
+
+      }
+
+      if (b[0] == '\u002D') {
+
+          if (b.length > 3) {
+          for (let i = 3; i < b.length; i++) {
+            if ((b[i] < '\u0030' || b[i] > '\u0039')) { bIsNum = false; }
+          }
+        } else if (b.length == 1) { bIsNum = false; }
+        if (b[1] < '\u0030' || b[1] > '\u0039') { bIsNum = false; }
+        if ((b[2] < '\u0030' || b[2] > '\u0039') && b[2] != '\u002e') { bIsNum = false; }
+
+        }
+
+    let res = (a == '' || b == '') ? 'Одно из полей, или оба поля оказались пустыми.' :
+
+      ( ((a[0] == '\u0030' && a[1] !== '\u002e' && a.length > 1) ||
+        (b[0] == '\u0030' && b[1] !== '\u002e' && b.length > 1)) && a[0] != '\u002D' ) ? 'Введите ' +
+      'числа без ведущих нулей, пожалуйста.' :
+
+      (((a[1] == '\u0030' && a[2] !== '\u002e' && a.length > 2) ||
+          (b[1] == '\u0030' && b[2] !== '\u002e' && b.length > 2)) && a[0] == '\u002D') ? 'Введите ' +
+        'числа без ведущих нулей, пожалуйста.' :
+
+      (aIsNum == false) ? 'Значение "a" нe является числом, или вы используете пробелы.' :
+      (bIsNum == false) ? 'Значение "b" нe является числом, или вы используете пробелы.' :
+
+      (a == b) ? 'Значения равны.' :
+      (a != b) ? 'Значения не равны.' : 'нет ответа';
+
+    alert(res);
+
+  </script>
+</body>
+
+</html>

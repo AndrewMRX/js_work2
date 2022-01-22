@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оператор ? и его использование</title>
+</head>
+
+<body>
+  <script>
+    let a = prompt('Введите значение a: ', '');
+    let b = prompt('Введите значение b: ', '');
+    let c = prompt('Введите значение с: ', '');
+
+    let aIsNum = true;
+    let bIsNum = true;
+    let cIsNum = true;
+
+    if (a[0] != '\u002D') {
+
+        if (a.length > 2) {
+          for (let i = 2; i < a.length; i++) {
+            if ((a[i] < '\u0030' || a[i] > '\u0039')) { aIsNum = false; }
+          }
+        }
+        if (a[0] < '\u0030' || a[0] > '\u0039') { aIsNum = false; }
+        if ((a[1] < '\u0030' || a[1] > '\u0039') && a[1] != '\u002e') { aIsNum = false; }
+
+      }
+
+      if (b[0] != '\u002D') {
+
+        if (b.length > 2) {
+          for (let i = 2; i < b.length; i++) {
+            if ((b[i] < '\u0030' || b[i] > '\u0039')) { bIsNum = false; }
+          }
+        }
+        if (b[0] < '\u0030' || b[0] > '\u0039') { bIsNum = false; }
+        if ((b[1] < '\u0030' || b[1] > '\u0039') && b[1] != '\u002e') { bIsNum = false; }
+
+      }
+
+      if (c[0] != '\u002D') {
+
+          if (c.length > 2) {
+            for (let i = 2; i < c.length; i++) {
+              if ((c[i] < '\u0030' || c[i] > '\u0039')) { cIsNum = false; }
+            }
+          }
+          if (c[0] < '\u0030' || c[0] > '\u0039') { cIsNum = false; }
+          if ((c[1] < '\u0030' || c[1] > '\u0039') && c[1] != '\u002e') { cIsNum = false; }
+
+        }
+
+      if (a[0] == '\u002D') {
+
+          if (a.length > 3) {
+            for (let i = 3; i < a.length; i++) {
+              if ((a[i] < '\u0030' || a[i] > '\u0039')) { aIsNum = false; }
+            }
+          } else if (a.length == 1) { aIsNum = false; }
+          if (a[1] < '\u0030' || a[1] > '\u0039') { aIsNum = false; }
+          if ((a[2] < '\u0030' || a[2] > '\u0039') && a[2] != '\u002e') { aIsNum = false; }
+
+        }
+
+        if (b[0] == '\u002D') {
+
+          if (b.length > 3) {
+            for (let i = 3; i < b.length; i++) {
+              if ((b[i] < '\u0030' || b[i] > '\u0039')) { bIsNum = false; }
+            }
+          } else if (b.length == 1) { bIsNum = false; }
+          if (b[1] < '\u0030' || b[1] > '\u0039') { bIsNum = false; }
+          if ((b[2] < '\u0030' || b[2] > '\u0039') && b[2] != '\u002e') { bIsNum = false; }
+
+        }
+
+        if (c[0] == '\u002D') {
+
+            if (c.length > 3) {
+              for (let i = 3; i < c.length; i++) {
+                if ((c[i] < '\u0030' || c[i] > '\u0039')) { cIsNum = false; }
+              }
+            } else if (c.length == 1) { cIsNum = false; }
+            if (c[1] < '\u0030' || c[1] > '\u0039') { cIsNum = false; }
+            if ((c[2] < '\u0030' || c[2] > '\u0039') && c[2] != '\u002e') { cIsNum = false; }
+
+          }
+
+
+    let result = (a == '' || b == '' || c == '') ? 'Одно или несколько полей оказались пустыми.' :
+
+      ( ((a[0] == '\u0030' && a[1] !== '\u002e' && a.length > 1) && (a[0] != '\u002D')) ||
+        ((b[0] == '\u0030' && b[1] !== '\u002e' && b.length > 1) && (b[0] != '\u002D')) ||
+        ((c[0] == '\u0030' && c[1] !== '\u002e' && c.length > 1) && (c[0] != '\u002D')) )  ? 'Введите ' +
+      'числа без ведущих нулей, пожалуйста.' :
+
+      (  (a[0] == '\u002D' && aIsNum == true) ||
+         (b[0] == '\u002D' && bIsNum == true) ||
+         (c[0] == '\u002D' && cIsNum == true) ) ? 'Отрицательные значения ' +
+      'сторон треугольника не допустимы.' :
+
+      (a == 0 || b == 0 || c == 0) ? 'Стороны треугольника должны быть больше 0 (нуля).' :
+
+      (aIsNum == false) ? 'Значение "a" нe является числом, или вы используете пробелы.' :
+      (bIsNum == false) ? 'Значение "b" нe является числом, или вы используете пробелы.' :
+      (cIsNum == false) ? 'Значение "c" нe является числом, или вы используете пробелы.' :
+
+      (a == Number.POSITIVE_INFINITY) ? 'Значение "a" слишком большое.' :
+      (b == Number.POSITIVE_INFINITY) ? 'Значение "b" слишком большое.' :
+      (c == Number.POSITIVE_INFINITY) ? 'Значение "c" слишком большое.' :
+
+      ((a * a + b * b) == Number.POSITIVE_INFINITY) ? 'Результат вычислений слишком велик.' :
+      ((c * c) == Number.POSITIVE_INFINITY) ? 'Результат вычислений слишком велик.' :
+
+      ( (a * a + b * b) == c * c) ? 'Ура: угадали длины сторон треугольника' : 'Надо учить теорему';
+
+    alert(result);
+
+  </script>
+</body>
+
+</html>

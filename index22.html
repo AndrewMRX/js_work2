@@ -13,100 +13,13 @@
     let a = prompt('Введите значение a: ', '');
     let b = prompt('Введите значение b: ', '');
 
-    let aIsNum = true;
-    let bIsNum = true;
+    let res = (a == '' && b == '') ? 'Вы не ввели значение "a" и "b".' :
+    (a == '') ? 'Вы не ввели значение "a".' :
+    (b == '') ? 'Вы не ввели значение "b".' :
 
-    let adots = 0;
-      let bdots = 0;
+    (a + a == b) ? 'Значения равны.' : 'Значения не равны.' ;
 
-      if (a[0] != '\u002D') {
-
-        if (a.length > 2) {
-          for (let i = 2; i < a.length; i++) {
-            if ((a[i] < '\u0030' || a[i] > '\u0039') && a[i] != '\u002e') { aIsNum = false; }
-          }
-        }
-        if (a[0] < '\u0030' || a[0] > '\u0039') { aIsNum = false; }
-        if ((a[1] < '\u0030' || a[1] > '\u0039') && a[1] != '\u002e') { aIsNum = false; }
-
-      }
-
-      if (b[0] != '\u002D') {
-
-        if (b.length > 2) {
-          for (let i = 2; i < b.length; i++) {
-            if ((b[i] < '\u0030' || b[i] > '\u0039') && b[i] != '\u002e') { bIsNum = false; }
-          }
-        }
-        if (b[0] < '\u0030' || b[0] > '\u0039') { bIsNum = false; }
-        if ((b[1] < '\u0030' || b[1] > '\u0039') && b[1] != '\u002e') { bIsNum = false; }
-
-      }
-
-
-      if (a[0] == '\u002D') {
-
-        if (a.length > 3) {
-          for (let i = 3; i < a.length; i++) {
-            if ((a[i] < '\u0030' || a[i] > '\u0039') && a[i] != '\u002e') { aIsNum = false; }
-          }
-        } else if (a.length == 1) { aIsNum = false; }
-        if (a[1] < '\u0030' || a[1] > '\u0039') { aIsNum = false; }
-        if ((a[2] < '\u0030' || a[2] > '\u0039') && a[2] != '\u002e') { aIsNum = false; }
-
-      }
-
-      if (b[0] == '\u002D') {
-
-        if (b.length > 3) {
-          for (let i = 3; i < b.length; i++) {
-            if ((b[i] < '\u0030' || b[i] > '\u0039') && b[i] != '\u002e') { bIsNum = false; }
-          }
-        } else if (b.length == 1) { bIsNum = false; }
-        if (b[1] < '\u0030' || b[1] > '\u0039') { bIsNum = false; }
-        if ((b[2] < '\u0030' || b[2] > '\u0039') && b[2] != '\u002e') { bIsNum = false; }
-
-      }
-
-      //проверка на 1 точку.
-
-      for (let i = 0; i < a.length; i++) {
-        if (a[i] == '\u002e') { adots++; }
-      }
-
-      if (adots > 1) { aIsNum = false; }
-
-      for (let i = 0; i < b.length; i++) {
-        if (b[i] == '\u002e') { bdots++; }
-      }
-
-      if (bdots > 1) { bIsNum = false; }
-
-
-    let result = (a == '' || b == '') ? 'Одно или оба поля оказались пустыми.' :
-
-      ( ((a[0] == '\u0030' && a[1] !== '\u002e' && a.length > 1) && (a[0] != '\u002D')) ||
-        ((b[0] == '\u0030' && b[1] !== '\u002e' && b.length > 1) && (b[0] != '\u002D')) )  ? 'Введите ' +
-      'числа без ведущих нулей, пожалуйста.' :
-
-      ( ((a[1] == '\u0030' && a[2] !== '\u002e' && a.length > 2) && (a[0] == '\u002D')) ||
-        ((b[1] == '\u0030' && b[2] !== '\u002e' && b.length > 2) && (b[0] == '\u002D')) ) ? 'Введите ' +
-      'числа без ведущих нулей, пожалуйста.' :
-
-      (aIsNum == false) ? 'Значение "a" нe является числом, или вы используете пробелы.' :
-      (bIsNum == false) ? 'Значение "b" нe является числом, или вы используете пробелы.' :
-
-      (a == Number.POSITIVE_INFINITY) ? 'Значение "a" слишком большое.' :
-      (b == Number.POSITIVE_INFINITY) ? 'Значение "b" слишком большое.' :
-      (a == Number.NEGATIVE_INFINITY) ? 'Слишком большое отрицательное значение "a".' :
-      (b == Number.NEGATIVE_INFINITY) ? 'Слишком большое отрицательное значение "b".' :
-
-      ( (+a + +a) == Number.POSITIVE_INFINITY) ? 'Результат вычислений слишком велик.' :
-      ( (+a + +a) == Number.NEGATIVE_INFINITY) ? 'Слишком большое отрицательное значение вычислений.' :
-
-      ( (+a + +a) == +b) ? 'Значения равны.' : 'Значения не равны.';
-
-    alert(result);
+    alert(res);
 
   </script>
 </body>

@@ -10,13 +10,117 @@
 
 <body>
   <script>
+
     let a = prompt('Введите значение a: ', '');
     let b = prompt('Введите значение b: ', '');
 
-    let res = (a == '' && b == '') ? 'Вы не ввели значение "a" и "b".' :
-    (a == '') ? 'Вы не ввели значение "a".' :
-    (b == '') ? 'Вы не ввели значение "b".' :
+    let aIsNum = false;
+    let bIsNum = false;
 
+    let adots = 0;
+    let bdots = 0;
+
+    a = a.toString();
+    b = b.toString();
+
+    
+
+    // Проверям строки на числовое значение:
+
+    // на отрицательное
+    if (a[0] == '\u002D' && (a[1] != '\u002e') && a.length > 1){
+      for (let i = 1; i < a.length; i++){
+        if ( (a[i] >= '\u0030' && a[i] <= '\u0039') || a[i] == '\u002e') {
+          aIsNum = true;
+        } else {
+          aIsNum = false ; break ;
+        }
+      }
+    }
+
+    if (b[0] == '\u002D' && (b[1] != '\u002e') && b.length > 1) {
+        for (let i = 1; i < b.length; i++) {
+          if ( (b[i] >= '\u0030' && b[i] <= '\u0039') || b[i] == '\u002e') {
+            bIsNum = true;
+          } else {
+            bIsNum = false; break;
+          }
+        }
+      }
+    
+    // на положительное
+      if (a[0] != '\u002D' && a[0] != '\u002e') {
+        for (let i = 0; i < a.length; i++) {
+          if ((a[i] >= '\u0030' && a[i] <= '\u0039') || a[i] == '\u002e') {
+            aIsNum = true;
+          } else {
+            aIsNum = false; break;
+          }
+        }
+      }
+
+      if (b[0] != '\u002D' && b[0] != '\u002e') {
+          for (let i = 0; i < b.length; i++) {
+            if ((b[i] >= '\u0030' && b[i] <= '\u0039') || b[i] == '\u002e') {
+              bIsNum = true;
+            } else {
+              bIsNum = false; break;
+            }
+          }
+        }
+
+      // Проверяем, чтобы в числе не было более 1 точки.
+
+      if(aIsNum == true){
+
+        for (let i = 0; i < a.length; i++) {
+            if (a[i] == '\u002e') { adots++; }
+          }
+
+          if (adots > 1) { aIsNum = false; }
+      }
+
+      if (bIsNum == true){
+
+          for (let i = 0; i < b.length; i++) {
+            if (b[i] == '\u002e') { bdots++; }
+         }
+
+         if (bdots > 1) { bIsNum = false; }
+
+      }
+
+      // Проверяем, на ведущие нули.
+
+      ((a[0] == '\u0030' && a[1] !== '\u002e' && a.length > 1) && (a[0] != '\u002D') && aIsNum == true) ?
+      aIsNum = false : aIsNum;
+
+      ((b[0] == '\u0030' && b[1] !== '\u002e' && b.length > 1) && (b[0] != '\u002D') && bIsNum == true) ?
+      bIsNum = false : bIsNum; 
+
+      ((a[1] == '\u0030' && a[2] !== '\u002e' && a.length > 2) && (a[0] == '\u002D') && aIsNum == true) ?
+      aIsNum = false : aIsNum;
+
+      ((b[1] == '\u0030' && b[2] !== '\u002e' && b.length > 2) && (b[0] == '\u002D') && bIsNum == true) ? 
+      aIsNum = false : aIsNum;
+
+     // Не стандартное значение "-0";
+    if (a == '-0') { aIsNum = false; }
+    if (b == '-0') { bIsNum = false; }
+     
+    // Если оба числа - сравниваем как числа.
+    if (aIsNum == true && bIsNum == true ) {
+      a = +a; b = +b;
+    }
+
+    //alert(a + ' ' + aIsNum);
+    //alert(b + ' ' + bIsNum);
+
+    let res = (a === '' && b === '') ? 'Вы не ввели значение "a" и "b".' :
+    (a === '') ? 'Вы не ввели значение "a".' :
+    (b === '') ? 'Вы не ввели значение "b".' :
+    (a == "Infinity" || b == "Infinity") ? 'Значения не равны.' :
+    (a == "-Infinity" || b == "-Infinity") ? 'Значения не равны.' :
     (a + a == b) ? 'Значения равны.' : 'Значения не равны.' ;
 
     alert(res);
